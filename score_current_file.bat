@@ -15,9 +15,11 @@ rem This exe should be run before run cl.exe
 call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars64.bat"
 
 rem run all .cpp or .c files in current directory and make test.exe files
-for %%F in (*.cpp *.c) do (
+for %%F in ("[1] Submitted Homework"\*.cpp "[1] Submitted Homework"\*.c) do (
 
     rem >nul means hide the result and 2>nul means hide errors
+    rem /Fe<file> 실행 파일 이름을 지정합니다.
+    rem Without /EHsc, causing error.
     cl /Fe%%~nF.exe "%%F" /EHsc >nul
     echo %%~nF is Completely compiled
 
@@ -71,12 +73,12 @@ for %%F in (*.cpp *.c) do (
     fc /w %%~nF.txt correct_answer.txt >nul
     if errorlevel 1 (
         echo Incorrect
-        move %%~nF.txt "Incorrect Homework" >nul
+        move %%~nF.txt "[2] Incorrect Homework" >nul
         echo !studentId!!studentName! %%~nF Incorrect !TimeStampDifference! %%~zF>>result.txt
 
     ) else (
         echo Correct
-        move %%~nF.txt "Correct Homework" >nul
+        move %%~nF.txt "[2] Correct Homework" >nul
         echo !studentId!!studentName! %%~nF Correct !TimeStampDifference! %%~zF>>result.txt
     )
     echo.
