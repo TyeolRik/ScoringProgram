@@ -1,7 +1,6 @@
 @echo off
 setlocal ENABLEDELAYEDEXPANSION
 
-rem title C언어 과제 채점 프로그램 - 분산컴퓨팅연구실 백승록
 title C language Scoring Program - Teaching Assistant, Mr. Baek, in Cloud Computing Labs. 
 echo This Program is made by TyeolRik in Univ. of Seoul for scoring student's homework
 echo.
@@ -18,7 +17,7 @@ rem run all .cpp or .c files in current directory and make test.exe files
 for %%F in ("[1] Submitted Homework"\*.cpp "[1] Submitted Homework"\*.c) do (
 
     rem >nul means hide the result and 2>nul means hide errors
-    rem /Fe<file> 실행 파일 이름을 지정합니다.
+    rem /Fe<filename> means make output file named <filename>
     rem Without /EHsc, causing error.
     cl /Fe%%~nF.exe "%%F" /EHsc >nul
     echo %%~nF is Completely compiled
